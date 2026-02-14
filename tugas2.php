@@ -25,4 +25,5 @@ $suhu = new KalkulatorSuhu(25);
 echo "Suhu dalam Celsius: " . $suhu->getCelsius() . "°C<br>";
 echo "Suhu dalam Fahrenheit: " . $suhu->keFahrenheit() . "°F<br>";
 echo "Suhu dalam Kelvin: " . $suhu->keKelvin() . " K";
+
 ?>
