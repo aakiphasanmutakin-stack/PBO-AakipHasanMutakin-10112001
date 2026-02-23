@@ -1,6 +1,6 @@
 <?php
 class KalkulatorSuhu {
-    private $celsius;
+    private $celsius; //instant class
 
     public function __construct($celsius) {
         $this->celsius = $celsius;
@@ -27,3 +27,4 @@ echo "Suhu dalam Fahrenheit: " . $suhu->keFahrenheit() . "°F<br>";
 echo "Suhu dalam Kelvin: " . $suhu->keKelvin() . " K";
 
 ?>
+
