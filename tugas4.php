@@ -33,16 +33,12 @@ $hsl->matkul = $data["matkul"];
 $hsl->nilai = $data["nilai"][$i];
 
 
-echo "Nama: " . $hsl->nama . "
-";
-echo "Kelas: " . $hsl->kelas . "
-";
-echo "Mata Kuliah: " . $hsl->matkul . "
-";
-echo "Nilai: " . $hsl->nilai . "
-";
-echo $hsl->status() . "
 
-";
+echo "Nama: " . $hsl->nama . "<br>";
+echo "Kelas: " . $hsl->kelas . "<br>";
+echo "Mata Kuliah: " . $hsl->matkul . "<br>";
+echo "Nilai: " . $hsl->nilai . "<br>";
+echo "Status: " . $hsl->status() . "<br>";
+echo "--------------------------------------------------<br>"; 
 }
 ?>
