@@ -1,52 +1,44 @@
 <?php
 class kendaraan{
-    public $jumlahroda=4;
+    public $jumlahRoda = 4;
     public $warna;
-    public $bahanbakar="Premium";
-    public $harga="10000000";
+    public $bahanBakar="premium";
+    public $harga=100000000;
     public $merek;
-    public $tahunPembuatan=2004;
-  
+    public $tahunPembuatan=2005;
 
-    public function StatusHarga(){
+    public function statusHarga(){
         if($this->harga>50000000){
-            $status = "Harga Kendaraan Mahal";
-        }
-        else{
-            $status = "Harga Kendaraan Murah";
+            $status = "mahal";
+        }else{
+            $status = "murah";
         }
         return $status;
-
     }
-    public function statusSubsidi(){
-        if($this->tahunPembuatan<2005 && $this->bahanbakar=="Premium"){
-            $status = "DAPAT SUBSIDI";
+    public function statuSubsidi(){
+        if($this->tahunPembuatan<2005 && $this->bahanBakar=="premium"){
+            $status = "subsidi";
         }else{
-            $status = "TIDAK DAPAT SUBSIDI";
+            $status = "tidak subsidi";
         }
-        return $status; 
-
+        return $status;
     }
-
 }
-$ObjekKendaraan = new kendaraan();
-echo "jumlahRoda:".$ObjekKendaraan->jumlahroda."<br/>";
-echo "jumlahRoda:".$ObjekKendaraan->StatusHarga()."<br/>";
-echo "Status Subsidi:".$ObjekKendaraan->statusSubsidi()."<br/>";
+$objekKendaraan = new kendaraan();
+echo "jumlah roda = ".$objekKendaraan->jumlahRoda."<br>";
+echo "status harga = ".$objekKendaraan->statusHarga()."<br>";
+echo "status subsidi = ".$objekKendaraan->statuSubsidi()."<br>";
 
-$ObjekKendaraan1 = new kendaraan();
-echo"Kendaraan 1 <br>";
-$ObjekKendaraan1->harga=10000000;
-$ObjekKendaraan1->tahunPembuatan= 1999;
-echo "Status Harga: ".$ObjekKendaraan1->StatusHarga();
- 
-echo" <br>Kendaraan 2";
-$ObjekKendaraan2 = new kendaraan();
-$ObjekKendaraan2->bahanbakar="Pertamax";
-$ObjekKendaraan2->tahunPembuatan = 1999;
-echo "<br>";
-echo "Status BBM: ".$ObjekKendaraan2->statusSubsidi();
-echo "<br>";
-echo "Harga Bekas: ". $ObjekKendaraan2 ->StatusHarga();
+$objekKendaraan1 =new kendaraan();
+$objekKendaraan1->harga=10000000;
+$objekKendaraan1->tahunPembuatan=1999;
+echo "kendaraan1 <br>";
+echo "status harga = ".$objekKendaraan1->statusHarga();
 
+$objekKendaraan2 = new kendaraan();
+$objekKendaraan2->bahanBakar = "pertamax";
+$objekKendaraan2->tahunPembuatan =1999;
+echo "<br>kendaraan2";
+echo "<br>";
+echo "status BBM = ".$objekKendaraan2->statuSubsidi()."<br>";
 ?>
