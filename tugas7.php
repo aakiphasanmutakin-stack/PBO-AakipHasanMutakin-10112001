@@ -63,7 +63,6 @@ class PegawaiMingguan extends Employee {
         if ($persentaseTerjual > 0.70) {
             $totalGaji += (0.10 * $this->hargaBarang) * $totalPenjualan;
         } else {
-            // Tambahan gaji 3% dari harga barang tiap 1 penjualan
             $totalGaji += (0.03 * $this->hargaBarang) * $totalPenjualan;
         }
 
