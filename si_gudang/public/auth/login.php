@@ -1,23 +1,31 @@
+<?php
+session_start();
+require_once '../../app/classes/database.php';
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: dashboard.php");
+    exit();
+}
+
+$error = $_SESSION['error'] ?? '';
+unset($_SESSION['error']);
+
+$success = $_SESSION['success'] ?? '';
+unset($_SESSION['success']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Spica Admin</title>
-  <!-- base:css -->
+  <title>Spica Admin - Login</title>
   <link rel="stylesheet" href="../assets/template/spica/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../assets/template/spica/vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
   <link rel="stylesheet" href="../assets/template/spica/css/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="../assets/template/spica/images/favicon.png" />
 </head>
-
 <body>
   <div class="container-scroller d-flex">
     <div class="container-fluid page-body-wrapper full-page-wrapper d-flex">
@@ -30,24 +38,43 @@
               </div>
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              
+              <?php if ($error): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <?php echo $error; ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              <?php endif; ?>
+              
+              <?php if ($success): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <?php echo $success; ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              <?php endif; ?>
+              
+              <form class="pt-3" method="POST" action="prosesLogin.php">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" placeholder="Password" required>
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../assets/template/spica/index.html">SIGN IN</a>
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
+                      <input type="checkbox" name="remember" class="form-check-input">
                       Keep me signed in
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                  <a href="forgot_password.php" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="mb-2">
                   <button type="button" class="btn btn-block btn-facebook auth-form-btn">
@@ -62,20 +89,13 @@
           </div>
         </div>
       </div>
-      <!-- content-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- base:js -->
+  
   <script src="../assets/template/spica/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
   <script src="../assets/template/spica/js/jquery.cookie.js" type="text/javascript"></script>
-  <!-- inject:js -->
   <script src="../assets/template/spica/js/off-canvas.js"></script>
   <script src="../assets/template/spica/js/hoverable-collapse.js"></script>
   <script src="../assets/template/spica/js/template.js"></script>
-  <!-- endinject -->
 </body>
-
 </html>

@@ -5,16 +5,15 @@ class Karyawan {
     public $golongan;
     public $jamLembur;
 
-    // 5. Tambahkan constructor dengan parameter
+    
     public function __construct($nama, $golongan, $jamLembur) {
         $this->nama = $nama;
         $this->golongan = $golongan;
         $this->jamLembur = $jamLembur;
     }
 
-    // 1. Method getGajiPokok dengan ketentuan besaran gaji
+    
     public function getGajiPokok() {
-        // Menggunakan array untuk mapping golongan dan gaji biar lebih rapi dari switch-case
         $daftarGaji = [
             "Ib" => 1250000, "Ic" => 1300000, "Id" => 1350000,
             "IIa" => 2000000, "IIb" => 2100000, "IIc" => 2200000, "IId" => 2300000,
@@ -22,37 +21,36 @@ class Karyawan {
             "IVa" => 2800000, "IVb" => 2900000, "IVc" => 3000000, "IVd" => 3100000
         ];
         
-        // Percabangan untuk ngecek apakah golongan ada di daftar
+        
         if (array_key_exists($this->golongan, $daftarGaji)) {
             return $daftarGaji[$this->golongan];
         } else {
-            return 0; // Default jika golongan tidak valid
+            return 0;
         }
     }
 
-    // Method tambahan untuk hitung total gaji
+    
     public function getTotalGaji() {
-        // 2. Besaran lembur tiap jam adalah Rp 15000
+        
         $uangLembur = $this->jamLembur * 15000;
         return $this->getGajiPokok() + $uangLembur;
     }
 
-    // 7. Function destruct berfungsi untuk meng-unset objek
+    
     public function __destruct() {
-        // Method ini otomatis terpanggil saat memori objek dibersihkan (pakai perintah unset() nanti di menu Hapus)
-        // Kita biarkan kosong/silent agar terminal tetap rapi seperti di contoh gambar.
+        
     }
 }
 
-// 4. Gunakan array untuk menampung objek (CRUD)
+
 $karyawanList = [];
 
-// Data Awal (biar outputnya langsung mirip sama gambar studi kasus)
+
 $karyawanList[] = new Karyawan("Winny", "IIb", 30);
 $karyawanList[] = new Karyawan("Stendy", "IIIc", 32);
 $karyawanList[] = new Karyawan("Alfred", "IVb", 30);
 
-// 3. Gunakan perulangan (do-while) dan percabangan (switch-case)
+
 do {
     echo "\n===== MENU GAJI KARYAWAN =====\n";
     echo "1. Tampilkan Data\n";
@@ -71,7 +69,6 @@ do {
             
             $no = 1;
             foreach ($karyawanList as $karyawan) {
-                // Format angka biar ada koma pemisah ribuan
                 $totalGajiFormat = "Rp" . number_format($karyawan->getTotalGaji(), 0, ',', ',');
                 echo $no . " | " . $karyawan->nama . " | " . $karyawan->golongan . " | " . $karyawan->jamLembur . " | " . $totalGajiFormat . "\n";
                 $no++;
@@ -95,7 +92,7 @@ do {
             $noUpdate = (int)trim(fgets(STDIN));
             $indexUpdate = $noUpdate - 1;
 
-            // Kita re-index array dulu jaga-jaga kalau ada data yang udah dihapus sebelumnya
+            
             $karyawanList = array_values($karyawanList);
 
             if (isset($karyawanList[$indexUpdate])) {
@@ -117,18 +114,18 @@ do {
             }
             break;
 
-        case 4: // DELETE
+        case 4: 
             echo "Masukkan Nomor (No) data yang ingin dihapus: ";
             $noHapus = (int)trim(fgets(STDIN));
             $indexHapus = $noHapus - 1;
 
-            $karyawanList = array_values($karyawanList); // Re-index biar nyocokin nomornya pas
+            $karyawanList = array_values($karyawanList);
 
             if (isset($karyawanList[$indexHapus])) {
-                // Di sini perintah unset() dijalankan, yang otomatis akan memanggil method __destruct() di dalam class
+                
                 unset($karyawanList[$indexHapus]);
                 
-                // Susun ulang index array setelah ada yang dihapus
+                
                 $karyawanList = array_values($karyawanList); 
                 echo "Data Karyawan berhasil dihapus dan memori di-unset!\n";
             } else {

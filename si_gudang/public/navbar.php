@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home<br></a></li>
@@ -56,3 +59,10 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+      <?php
+      if (isset($_SESSION['user_id'])) {
+          echo '<a class="btn-getstarted flex-md-shrink-0" href="auth/logout.php">Logout</a>';
+      } else {
+          echo '<a class="btn-getstarted flex-md-shrink-0" href="auth/login.php">Login</a>';
+      }
+?>
