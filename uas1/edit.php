@@ -19,8 +19,8 @@
 
     <?php 
     include "koneksi.php";
-    $id = $_GET['id'];
-    $query_mysql = mysqli_query($koneksi, "SELECT * FROM user WHERE id='$id'");
+    $id = $_GET['id_user'];
+    $query_mysql = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user='$id'");
     $nomor = 1;
     while($data = mysqli_fetch_array($query_mysql)){
     ?>
@@ -29,7 +29,7 @@
             <tr>
                 <td>Nama</td>
                 <td>
-                    <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
+                    <input type="hidden" name="id_user" value="<?php echo $data['id_user'] ?>">
                     <input type="text" name="nama" value="<?php echo $data['nama'] ?>">
                 </td>
             </tr>
